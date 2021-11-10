@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.NumberPicker
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 
 class MainActivity : AppCompatActivity() {
@@ -30,7 +31,8 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.Second_NumTv),
             findViewById(R.id.Thrid_NumTv),
             findViewById(R.id.Fourth_NumTv),
-            findViewById(R.id.Fifth_NumTv)
+            findViewById(R.id.Fifth_NumTv),
+            findViewById(R.id.Six_NumTv)
         )
     }
     private var didRun = false
@@ -70,7 +72,9 @@ class MainActivity : AppCompatActivity() {
 
                 textView.text = number.toString()
                 textView.isVisible = true
+                setNumberBackground(index,textView)
             }
+
 
             Log.d("MainActivity",list.toString())
         }
@@ -96,7 +100,19 @@ class MainActivity : AppCompatActivity() {
             textView.isVisible =true
             textView.text = numberPicker.value.toString()
 
+            setNumberBackground(numberPicker.value,textView)
+
             pickNumberSet.add(numberPicker.value)
+        }
+    }
+
+    private fun setNumberBackground(number:Int,textView: TextView){
+        when(number){
+            in 1..10 -> textView.background =ContextCompat.getDrawable(this,R.drawable.circle_blue)
+            in 11..20 -> textView.background =ContextCompat.getDrawable(this,R.drawable.circle_blue)
+            in 21..30 -> textView.background =ContextCompat.getDrawable(this,R.drawable.circle_blue)
+            in 31..40 -> textView.background =ContextCompat.getDrawable(this,R.drawable.circle_blue)
+            else -> textView.background = ContextCompat.getDrawable(this,R.drawable.circle_yellow)
         }
     }
 
